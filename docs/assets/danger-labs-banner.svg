@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 240" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050B14" />
+      <stop offset="50%" stop-color="#0A1628" />
+      <stop offset="100%" stop-color="#050B14" />
+    </linearGradient>
+    <linearGradient id="cyan-glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00F2FE" />
+      <stop offset="100%" stop-color="#4FACFE" />
+    </linearGradient>
+    <linearGradient id="pink-glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF007F" />
+      <stop offset="100%" stop-color="#7928CA" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="240" rx="16" fill="url(#bg)" stroke="#1E293B" stroke-width="2"/>
+
+  <!-- Tech Grid Background Pattern -->
+  <g opacity="0.08" stroke="#FFFFFF" stroke-width="1">
+    <path d="M0 40H1000 M0 80H1000 M0 120H1000 M0 160H1000 M0 200H1000" />
+    <path d="M100 0V240 M200 0V240 M300 0V240 M400 0V240 M500 0V240 M600 0V240 M700 0V240 M800 0V240 M900 0V240" />
+  </g>
+
+  <!-- Glowing Accent Lines -->
+  <path d="M0 2H1000" stroke="url(#cyan-glow)" stroke-width="4" />
+  <path d="M200 238H800" stroke="url(#pink-glow)" stroke-width="2" />
+
+  <!-- DANGER LABS Icon Symbol -->
+  <g transform="translate(80, 50)">
+    <!-- Hexagon Outer -->
+    <polygon points="70,10 130,45 130,115 70,150 10,115 10,45" fill="none" stroke="url(#cyan-glow)" stroke-width="5" stroke-linejoin="round"/>
+    <!-- Lightning Bolt / D Symbol -->
+    <path d="M75 35 L45 85 H70 L65 125 L95 75 H70 Z" fill="url(#pink-glow)" />
+  </g>
+
+  <!-- Text Section -->
+  <text x="240" y="105" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="900" font-size="52" fill="#FFFFFF" letter-spacing="4">
+    DANGER <tspan fill="url(#cyan-glow)">LABS</tspan>
+  </text>
+  
+  <text x="242" y="145" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="600" font-size="16" fill="#94A3B8" letter-spacing="6">
+    NEXT-GEN CODE TO DESIGN & AST SYNCHRONIZER
+  </text>
+
+  <!-- Status Pill -->
+  <g transform="translate(242, 165)">
+    <rect width="180" height="26" rx="13" fill="#0F172A" stroke="#00F2FE" stroke-width="1"/>
+    <circle cx="15" cy="13" r="5" fill="#00E676" />
+    <text x="28" y="17" font-family="sans-serif" font-size="11" font-weight="700" fill="#E2E8F0" letter-spacing="1">VERIFIED ENTERPRISE</text>
+  </g>
+</svg>

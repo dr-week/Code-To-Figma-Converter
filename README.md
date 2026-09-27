@@ -1,19 +1,29 @@
 <div align="center">
 
-  <h1>⚡ Code to Design</h1>
-  <p><strong>Bi-Directional Visual Design Converter & AST Source Code Synchronizer</strong></p>
+  <br />
+  <img src="https://raw.githubusercontent.com/dr-week/Code-To-Figma-Converter/main/docs/assets/danger-labs-banner.svg" alt="DANGER LABS" width="600" />
+  <br />
+  <br />
+
+  <h1>⚡ CODE TO DESIGN</h1>
+  <p><strong>ENTERPRISE BI-DIRECTIONAL VISUAL CANVAS ENGINE & SFC AST SYNCHRONIZER</strong></p>
+  <p><i>Developed & Maintained by DANGER LABS Open Source Engineering</i></p>
+
+  <br />
 
   <p>
-    <a href="https://github.com/dr-week/Code-To-Figma-Converter/actions"><img src="https://img.shields.io/badge/build-passing-brightgreen.svg?style=for-the-badge&logo=github-actions" alt="Build Status" /></a>
-    <a href="https://typescriptlang.org"><img src="https://img.shields.io/badge/TypeScript-5.9.3-3178C6.svg?style=for-the-badge&logo=typescript" alt="TypeScript" /></a>
-    <a href="https://vuejs.org"><img src="https://img.shields.io/badge/Vue.js-3.5-4FC08D.svg?style=for-the-badge&logo=vuedotjs" alt="Vue.js" /></a>
-    <a href="https://openpencil.dev"><img src="https://img.shields.io/badge/Editor-OpenPencil%20%7C%20Figma-6C5CE7.svg?style=for-the-badge" alt="OpenPencil Editor" /></a>
-    <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge" alt="License" /></a>
+    <a href="https://github.com/dr-week/Code-To-Figma-Converter/actions"><img src="https://img.shields.io/badge/DANGER%20BUILD-PASSING-00F2FE?style=for-the-badge&logo=githubactions&logoColor=white&color=050B14" alt="Build Status" /></a>
+    <a href="https://typescriptlang.org"><img src="https://img.shields.io/badge/TYPESCRIPT-5.9.3-3178C6?style=for-the-badge&logo=typescript&logoColor=white&color=050B14" alt="TypeScript" /></a>
+    <a href="https://vuejs.org"><img src="https://img.shields.io/badge/VUE.JS-3.5-4FC08D?style=for-the-badge&logo=vuedotjs&logoColor=white&color=050B14" alt="Vue.js" /></a>
+    <a href="https://openpencil.dev"><img src="https://img.shields.io/badge/CANVAS-OPENPENCIL%20%7C%20FIGMA-FF007F?style=for-the-badge&logo=figma&logoColor=white&color=050B14" alt="OpenPencil Editor" /></a>
+    <a href="LICENSE"><img src="https://img.shields.io/badge/LICENSE-MIT-00E676?style=for-the-badge&color=050B14" alt="License" /></a>
   </p>
 
-  <p>
-    Convert running Vue + TypeScript interfaces into editable OpenPencil & Figma canvas layers.<br />
-    Visually edit text, colors, paddings, and flexbox spacing on canvas—and write changes directly back to Vue SFC source code.
+  <br />
+
+  <p width="80%">
+    <b>Code to Design</b> is Danger Labs' next-generation visual compilation system.<br />
+    It transforms live browser-rendered Vue + TypeScript application interfaces into structurally editable OpenPencil & Figma layers, with 100% deterministic source provenance tracking and non-destructive AST writebacks.
   </p>
 
   <br />
@@ -22,134 +32,134 @@
 
 ---
 
-## 📌 Executive Summary
-
-**Code to Design** bridges the gap between running web applications and visual design editors. Built for design-driven engineering teams, it renders live web DOM trees into native, structured **OpenPencil / Figma (`.fig`)** design documents while maintaining full **source code provenance**. 
-
-When designers or developers edit text strings, color fills, element paddings, or flexbox gaps inside the visual canvas, **Code to Design** computes granular AST diffs and writes those visual edits cleanly back to the original `<template>` and `<style>` blocks of your project's Single File Components (`.vue`).
+> [!IMPORTANT]  
+> **DANGER LABS PLATFORM STATUS: MILESTONES 1–5 FULLY VERIFIED**  
+> All repository quality gates are operating at 100% compliance: **78/78 Vitest integration suites passing**, zero TypeScript compiler errors (`tsc`), zero ESLint lints, and clean package production builds across all monorepo modules.
 
 ---
 
-## ✨ Key Features & Capabilities
+## 💎 Architecture & Core Technology
 
-- 🔄 **Bidirectional AST Source Writeback**: Non-destructive Vue SFC mutation. Updates `<template>` text nodes and `<style scoped>` CSS rules while preserving script logic, comments, and formatting.
-- 🎨 **Native Document I/O (`.fig`)**: Full support for official `@open-pencil/fig` v0.14.0 file format reading, editing, and writing.
-- 🏷️ **Source Provenance Anchoring (`pluginData`)**: Embeds non-destructive metadata tuples `[sourceFile, sourceId, kind]` onto every visual layer for deterministic code-to-design mapping.
-- 🛡️ **Automated Safety & Snapshot Backups**: Pre-edit `.backup/` snapshots created automatically prior to modifying any source code.
-- ⚔️ **SHA-256 Conflict Engine**: Detects out-of-band source changes, prevents accidental code overwrites, and supports 3-way conflict merges with `--dry-run` and `--force` flags.
-- 🖥️ **Interactive Windows Launchers**: Built-in 1-click batch launchers (`scripts/launch.bat`, `scripts/start-ui.bat`) for easy developer onboarding.
+Traditional design-to-code pipelines are unidirectional and lossy. **Danger Labs Code to Design** introduces a bi-directional visual compilation loop:
+
+1. **Lossless DOM-to-Canvas Compilation**: Captures computed geometry, typography, colors, and layout constraints from live browser DOM instances using Playwright engine integration.
+2. **Deterministic Source Anchoring (`pluginData`)**: Every visual canvas element is embedded with non-destructive metadata tuples `[sourceFile, sourceId, kind]` mapping directly back to your codebase.
+3. **AST SFC Mutation Engine**: When visual layers are edited inside **[OpenPencil](https://openpencil.dev/)** or Figma, Danger Labs' AST transformer parses visual diffs and surgically updates `<template>` text nodes and `<style scoped>` CSS rules without corrupting script blocks or comments.
+4. **Resilient Staleness & Conflict Engine**: SHA-256 fingerprinting prevents out-of-band overwrite conflicts with automated 3-way merge resolution and `.backup/` snapshots.
 
 ---
 
-## 📐 System Architecture
+## 🎨 System Architecture & Workflow
 
 ```mermaid
-flowchart LR
-    subgraph Client["Running Web App"]
-        A["Vue 3 / TypeScript UI<br/>(Local Server: 127.0.0.1:4174)"]
-    </div>
+flowchart TD
+    classDef danger fill:#0b0f19,stroke:#00f2fe,stroke-width:2px,color:#fff;
+    classDef canvas fill:#0b0f19,stroke:#ff007f,stroke-width:2px,color:#fff;
+    classDef engine fill:#0b0f19,stroke:#00e676,stroke-width:2px,color:#fff;
 
-    subgraph CaptureEngine["Code to Design Engine"]
-        B["DOM Capture Adapter<br/>(Playwright Browser Engine)"]
-        C["Source Provenance Mapper<br/>(pluginData Tuples)"]
-        D["Native Document Writer<br/>(@open-pencil/fig)"]
+    subgraph AppRuntime["🌐 LIVE APPLICATION RUNTIME"]
+        A["Vue 3 / TypeScript App<br/>(Nuxt / Vite Dev Server)"]:::danger
     end
 
-    subgraph Editor["Visual Design Editor"]
-        E["OpenPencil / Figma Canvas<br/>(original.fig)"]
-        F["Visual Edits:<br/>Text, Fills, Paddings & Gaps"]
-        G["Saved Canvas<br/>(working.fig)"]
+    subgraph DangerEngine["⚡ DANGER LABS CAPTURE ENGINE"]
+        B["Headless DOM Inspector<br/>(Playwright Driver)"]:::danger
+        C["Source Provenance Mapper<br/>(pluginData Tuples)"]:::danger
+        D["Native Document Builder<br/>(@open-pencil/fig v0.14.0)"]:::danger
     end
 
-    subgraph WritebackEngine["AST Mutation Engine"]
-        H["Visual Diff Engine"]
-        I["Safety Snapshot (.backup/)"]
-        J["SFC AST Transformer"]
+    subgraph VisualCanvas["🎨 VISUAL DESIGN EDITOR"]
+        E["OpenPencil / Figma Canvas<br/>(original.fig)"]:::canvas
+        F["Artistic Visual Edits:<br/>Text • Fills • Paddings • Gaps"]:::canvas
+        G["Exported Modified Package<br/>(working.fig)"]:::canvas
     end
 
-    A -->|1. Inspect DOM| B
-    B -->|2. Attach Source Maps| C
-    C -->|3. Export Native Package| D
-    D -->|4. Import Document| E
-    E -->|5. Edit Visually| F
-    F -->|6. Save Output| G
-    G -->|7. Compute Diffs| H
-    H -->|8. Create Snapshot| I
-    I -->|9. Mutate SFC Source| J
+    subgraph ASTWriteback["🔮 AST SOURCE SYNCHRONIZER"]
+        H["Visual Diff Engine"]:::engine
+        I["SHA-256 Staleness & Snapshot (.backup/)"]:::engine
+        J["SFC AST & Scoped CSS Mutator"]:::engine
+    end
+
+    A -->|1. Inspect Rendered DOM| B
+    B -->|2. Attach Provenance Anchors| C
+    C -->|3. Compile Native Package| D
+    D -->|4. Load Canvas Package| E
+    E -->|5. Visual Editing| F
+    F -->|6. Save Canvas Output| G
+    G -->|7. Compute Visual Diffs| H
+    H -->|8. Verify Safety Fingerprint| I
+    I -->|9. Writeback to Source| J
     J -->|10. Vite Hot-Reload| A
 ```
 
 ---
 
-## 🚀 Quick Start Guide
+## ⚡ Quick Start Guide
 
-### Option 1: Interactive Windows Launcher (Recommended)
+### 🚀 Interactive Launcher (Windows Batch Suite)
 
-Simply run the interactive batch script located in the `scripts/` directory:
+Launch Danger Labs' interactive terminal launcher:
 
 ```cmd
 .\scripts\launch.bat
 ```
 
-The interactive menu provides quick options to:
-1. **Start Vue UI Application** (Launches server & opens browser at `http://127.0.0.1:4174`)
-2. **Run UI Capture Pipeline** (Generates `original.fig` & canvas fidelity preview)
-3. **Run Visual Writeback** (Syncs visual edits from `working.fig` back to code)
-4. **Run Full Quality Gate Checks** (Runs typechecking, linting, and tests)
+```
+===================================================
+             DANGER LABS // LAUNCHER
+  Convert Live Vue UI to OpenPencil & Write Back Code
+===================================================
 
-For a direct 1-click launch of the Web UI:
+Select an option:
+[1] Start Vue UI Application (http://127.0.0.1:4174)
+[2] Run UI Capture Pipeline (Generate original.fig)
+[3] Run Visual Writeback (Apply working.fig edits)
+[4] Run Full Repository Quality Gate (pnpm check)
+[5] Exit
+```
+
+For 1-click execution of the live Web UI server:
 ```cmd
 .\scripts\start-ui.bat
 ```
 
 ---
 
-### Option 2: Command Line Interface (CLI)
+### 🛠️ Developer CLI Workflow
 
-#### 1. Installation & Environment Setup
-
-Clone the repository and install workspace dependencies:
+#### 1. Repository Installation
 
 ```bash
-# Clone the repository
+# Clone the official Danger Labs repository
 git clone https://github.com/dr-week/Code-To-Figma-Converter.git
 cd Code-To-Figma-Converter
 
-# Install pnpm dependencies
+# Install monorepo dependencies
 pnpm install --frozen-lockfile
 
-# Install headless browser drivers for DOM capture
+# Provision browser capture binaries
 pnpm setup:browser
 ```
 
-#### 2. Start Live Development UI
-
-Launch the included Vue 3 UI fixture server:
+#### 2. Launch Local Dev Server
 
 ```bash
 pnpm dev:vue
 ```
-*The local interface will be live at `http://127.0.0.1:4174`.*
+*Application available at `http://127.0.0.1:4174`.*
 
-#### 3. Capture Web UI to OpenPencil `.fig` File
-
-Convert the running application into a design document:
+#### 3. Execute Visual Capture
 
 ```bash
 pnpm capture --url http://127.0.0.1:4174 --out original.fig
 ```
-*Or execute `pnpm milestone1` to run the full capture, native `.fig` packaging, and visual fidelity rendering pipeline.*
 
-#### 4. Edit Visually in OpenPencil
+#### 4. Perform Visual Edits in OpenPencil
 
-1. Launch **[openpencil.dev](https://openpencil.dev/)** or the OpenPencil desktop application.
-2. Load the generated `original.fig` package.
-3. Edit UI text strings, background colors, paddings, or flexbox gaps directly on the canvas.
-4. Save the modified document as `working.fig`.
+- Open `original.fig` inside **[openpencil.dev](https://openpencil.dev/)**.
+- Edit typography, solid fill colors, or container spacing visually.
+- Save output as `working.fig`.
 
-#### 5. Synchronize Edits Back to Vue Source Code
-
-Execute the writeback orchestrator to update your project source code:
+#### 5. Synchronize Edits to Source Code
 
 ```bash
 pnpm writeback --original original.fig --working working.fig
@@ -157,52 +167,54 @@ pnpm writeback --original original.fig --working working.fig
 
 ---
 
-## 📂 Repository Structure
+## 🛡️ Enterprise Quality Verification Matrix
 
-```
-code-to-design/
-├── 📁 apps/
-│   ├── 📄 cli/             # CLI application entrypoints (capture & writeback commands)
-│   └── 📄 figma-plugin/    # Figma plugin manifest and bundle target
-├── 📁 packages/
-│   ├── 📄 browser/         # Headless browser DOM capture & Playwright canvas renderer
-│   ├── 📄 contracts/       # Core TypeScript interfaces, AST schemas & contracts
-│   ├── 📄 core/            # SFC AST transformers, CSS rule mutators & conflict engine
-│   ├── 📄 figma/           # Document parser & scene graph builder (@open-pencil/fig)
-│   └── 📄 tooling/         # Milestone orchestrators, diff engines & backup tools
-├── 📁 scripts/             # Windows batch launchers (launch.bat, start-ui.bat)
-├── 📁 tests/              # Vitest integration & unit test suite (78 tests passing)
-└── 📄 README.md            # Enterprise product documentation
-```
+Danger Labs enforces rigorous quality controls across all workspace packages:
 
----
+| Quality Gate | Command | Verification Status | Threshold |
+| :--- | :--- | :---: | :---: |
+| **TypeScript Compiler** | `pnpm typecheck` | `PASS` | `0 Errors` |
+| **ESLint Static Analysis** | `pnpm lint` | `PASS` | `0 Warnings` |
+| **Vitest Test Suite** | `pnpm test` | `PASS` | `78/78 Passing` |
+| **Monorepo Package Build** | `pnpm build` | `PASS` | `Clean Output` |
 
-## 🧪 Quality Assurance & Test Verification
-
-This project enforces strict quality gates across all workspace packages:
-
-| Verification Gate | Command | Status |
-| :--- | :--- | :--- |
-| **TypeScript Compiler** | `pnpm typecheck` | `0 Errors` |
-| **ESLint Quality Engine** | `pnpm lint` | `0 Warnings` |
-| **Vitest Test Suite** | `pnpm test` | `78/78 Tests Passing` |
-| **Workspace Build** | `pnpm build` | `Clean Build` |
-
-Run the full quality gate pipeline with a single command:
+Execute the full Danger Labs quality gate with a single command:
 ```bash
 pnpm check
 ```
 
 ---
 
-## 🤝 Contributing & License
+## 🏢 Monorepo Architecture Overview
 
-Contributions are welcome! Please ensure all code changes follow the rules defined in [`AGENTS.md`](AGENTS.md) and pass `pnpm check` before submitting a pull request.
-
-Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for more information.
+```
+CODE-TO-DESIGN // DANGER LABS MONOREPO
+├── 📁 apps/
+│   ├── 📄 cli/             # Danger Labs Command-Line Interface
+│   └── 📄 figma-plugin/    # Figma Integration Plugin Package
+├── 📁 packages/
+│   ├── 📄 browser/         # Headless DOM Inspection & Playwright Driver
+│   ├── 📄 contracts/       # Core TypeScript Interfaces & Schema Definitions
+│   ├── 📄 core/            # AST Transformer, CSS Mutator & Conflict Engine
+│   ├── 📄 figma/           # Document Parser & Scene Graph Engine (@open-pencil/fig)
+│   └── 📄 tooling/         # Capture Orchestrators, Diff Engines & Backup Tools
+├── 📁 scripts/             # Interactive Windows Launchers (launch.bat, start-ui.bat)
+├── 📁 tests/              # End-to-End Vitest Integration Suite (78 Tests)
+└── 📄 README.md            # Danger Labs Official Documentation
+```
 
 ---
 
+## 📄 License & Legal Notice
+
+Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for details.
+
+```
+Copyright (c) 2026 DANGER LABS INC. All rights reserved.
+Code to Design is an open-source initiative maintained by Danger Labs Engineering.
+```
+
 <div align="center">
-  <sub>Maintained by <strong>Dr-Week Software Engineering</strong>. Built for OpenPencil & Figma design workflows.</sub>
+  <br />
+  <p><strong>DANGER LABS // INNOVATION IN DESIGN-TO-CODE SYNCHRONIZATION</strong></p>
 </div>
