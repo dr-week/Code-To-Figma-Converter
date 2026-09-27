@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><style>
+body{font:13px/1.5 system-ui,sans-serif;margin:24px;color:var(--figma-color-text,#222);background:var(--figma-color-bg,#fff)}h1{font-size:24px;letter-spacing:-1px;margin:0 0 8px}p{margin:8px 0 20px}label{display:block;font-weight:600;margin-bottom:8px}input{width:100%;margin-bottom:16px}button{padding:10px 14px;border:0;border-radius:4px;cursor:pointer;margin:0 8px 8px 0}button.primary{background:#b63727;color:white}button:disabled{opacity:.5;cursor:default}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.5 system-ui;max-height:180px;overflow:auto;background:var(--figma-color-bg-secondary,#f4f4f4);padding:12px}small{display:block;margin-bottom:16px}
+</style></head><body>
+<h1>Code → Figma</h1><p>Import a captured interface as editable layers.</p>
+<label for="scene">Scene JSON</label><input id="scene" type="file" accept=".json,application/json">
+<small>A new copy is created on every import. Existing layers are preserved. Fonts must be available in this editor.</small>
+<button class="primary" id="import" disabled>Import new copy</button><button id="cancel" disabled>Cancel</button><button id="export" disabled>Export PNG</button>
+<pre id="status" role="status" aria-live="polite">Choose the scene.json produced by pnpm demo or pnpm capture.</pre>
+<script>
+const fileInput=document.getElementById('scene'), importButton=document.getElementById('import'), cancelButton=document.getElementById('cancel'), exportButton=document.getElementById('export'), status=document.getElementById('status');
+let json=null;
+function setBusy(value){fileInput.disabled=value;importButton.disabled=value||json===null;cancelButton.disabled=!value;}
+fileInput.onchange=async()=>{json=null;importButton.disabled=true;const file=fileInput.files[0];if(!file)return;if(file.size>16000000){status.textContent='File exceeds 16 MB.';return;}try{const text=await file.text();const scene=JSON.parse(text);if(scene.schemaVersion!=='0.1'||!Array.isArray(scene.nodes))throw Error('Expected scene schema 0.1');json=text;status.textContent=scene.nodes.length+' nodes. '+(scene.warnings||[]).length+' capture warnings.\n'+(scene.warnings||[]).map(w=>w.code+': '+w.message).join('\n');importButton.disabled=false;}catch(error){status.textContent=error.message;}};
+importButton.onclick=()=>{setBusy(true);exportButton.disabled=true;status.textContent='Validating fonts and assets, then creating native layers…';parent.postMessage({pluginMessage:{type:'import',json}},'*');};
+cancelButton.onclick=()=>{parent.postMessage({pluginMessage:{type:'cancel'}},'*');status.textContent='Cancelling…';};
+exportButton.onclick=()=>{setBusy(true);exportButton.disabled=true;parent.postMessage({pluginMessage:{type:'export'}},'*');};
+onmessage=event=>{const message=event.data.pluginMessage;if(!message)return;if(message.type==='done'){setBusy(false);exportButton.disabled=false;status.textContent='Imported '+Object.keys(message.result.nodeIds).length+' native nodes.\nRoot: '+message.result.rootId+'\nCapture warnings: '+message.warnings.length+'\nInspect layer names and text, then export PNG for comparison.';}else if(message.type==='error'){setBusy(false);status.textContent=message.message;}else if(message.type==='exported'){setBusy(false);exportButton.disabled=false;const url=URL.createObjectURL(new Blob([message.bytes],{type:'image/png'}));const link=document.createElement('a');link.href=url;link.download='figma-export.png';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);status.textContent='PNG exported. Compare it with reference.png.';}};
+</script></body></html>

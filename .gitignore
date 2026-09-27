@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.artifacts/
+coverage/
+test-results/
+.env
+.env.*
+!.env.example
+*.tsbuildinfo

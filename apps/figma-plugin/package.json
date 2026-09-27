@@ -1,0 +1,1 @@
+{ "name": "@code-to-figma/plugin", "version": "0.1.0", "private": true, "type": "module", "dependencies": { "@code-to-figma/figma": "workspace:*", "@code-to-figma/core": "workspace:*", "@code-to-figma/contracts": "workspace:*" } }

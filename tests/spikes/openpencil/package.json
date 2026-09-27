@@ -1,0 +1,13 @@
+{
+  "name": "openpencil-compatibility-spike",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@open-pencil/core": "0.14.0",
+    "@open-pencil/scene-graph": "0.14.0",
+    "@open-pencil/fig": "0.14.0",
+    "@open-pencil/kiwi": "0.14.0",
+    "@open-pencil/pen": "0.14.0",
+    "@open-pencil/dom-css": "0.14.0"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "name": "code-to-figma",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.3.4",
+  "engines": {
+    "node": ">=24.15.0 <25"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @code-to-figma/fixture dev",
+    "dev:vue": "pnpm --filter @code-to-figma/fixture-vue dev",
+    "ui": "pnpm --filter @code-to-figma/web dev",
+    "build": "pnpm --filter @code-to-figma/fixture build && tsx packages/tooling/build-plugin.ts",
+    "build:vue": "pnpm --filter @code-to-figma/fixture-vue build",
+    "build:ui": "pnpm --filter @code-to-figma/web build",
+    "capture": "tsx apps/cli/src/main.ts",
+    "writeback": "tsx apps/cli/src/main.ts writeback",
+    "demo": "tsx packages/tooling/demo.ts",
+    "milestone1": "tsx packages/tooling/milestone1.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --fileParallelism=false",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "pnpm typecheck && pnpm lint && pnpm test && pnpm build && pnpm build:vue && pnpm build:ui",
+    "setup:browser": "pnpm --filter @code-to-figma/browser exec playwright install chromium",
+    "compare": "tsx packages/tooling/compare.ts"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@figma/plugin-typings": "1.138.0",
+    "@types/node": "24.13.4",
+    "@types/pngjs": "6.0.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "esbuild": "0.28.2",
+    "eslint": "10.10.0",
+    "pixelmatch": "7.2.0",
+    "pngjs": "7.0.0",
+    "prettier": "3.9.6",
+    "tsx": "4.23.13",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.70.0",
+    "vite": "8.2.2",
+    "vitest": "5.0.0"
+  }
+}

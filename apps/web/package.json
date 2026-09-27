@@ -1,0 +1,19 @@
+{
+  "name": "@code-to-figma/web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx server/index.ts",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@code-to-figma/tooling": "workspace:*",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "tsx": "4.23.13",
+    "vite": "8.2.2"
+  }
+}

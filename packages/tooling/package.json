@@ -1,0 +1,17 @@
+{
+  "name": "@code-to-figma/tooling",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": "./index.ts",
+  "dependencies": {
+    "@code-to-figma/browser": "workspace:*",
+    "@code-to-figma/contracts": "workspace:*",
+    "@code-to-figma/core": "workspace:*",
+    "@open-pencil/core": "0.14.0",
+    "@open-pencil/fig": "0.14.0",
+    "@open-pencil/kiwi": "0.14.0",
+    "@open-pencil/scene-graph": "0.14.0",
+    "playwright": "1.63.0"
+  }
+}

@@ -1,0 +1,1 @@
+{ "name": "@code-to-figma/figma", "version": "0.1.0", "private": true, "type": "module", "exports": "./src/index.ts", "dependencies": { "@code-to-figma/core": "workspace:*", "@code-to-figma/contracts": "workspace:*" } }

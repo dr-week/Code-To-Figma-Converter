@@ -1,0 +1,7 @@
+packages:
+  - apps/*
+  - packages/*
+  - tests/fixtures/*
+allowBuilds:
+  core-js: true
+  esbuild: true

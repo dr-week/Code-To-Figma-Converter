@@ -1,0 +1,48 @@
+export { importScene, type EditorPort, type ImportResult } from './modules/figma-import/import-scene';
+export { resolveName } from './modules/naming/resolve-name';
+export {
+  generateSourceMap,
+  applyTextWritebackContent,
+  applyColorWritebackContent,
+  applyLayoutWritebackContent,
+  checkSourceStaleness,
+  resolveSourceConflict,
+  parseVueSfcSections,
+  findSfcElementBySourceId,
+  applySfcAstTextUpdate,
+  applySfcAstStyleUpdate,
+  applySfcCssRuleUpdate,
+  colorToHexOrRgba,
+  formatPaddingCss,
+  type SourceMap,
+  type SourceMappingEntry,
+  type TextWritebackParams,
+  type TextWritebackContentResult,
+  type ColorWritebackParams,
+  type ColorWritebackContentResult,
+  type LayoutPadding,
+  type LayoutProps,
+  type LayoutWritebackParams,
+  type LayoutWritebackContentResult,
+  type SourceStalenessCheckOptions,
+  type SourceStalenessResult,
+  type ConflictMergeOptions,
+  type ConflictMergeResult,
+  type SfcAttributeAst,
+  type SfcElementAstNode,
+  type VueSfcSections,
+  type CssRuleUpdateParams,
+  type CssRuleUpdateResult,
+} from './modules/source-mapping';
+
+export {
+  SOURCE_ANCHOR_NAMESPACE,
+  SOURCE_ANCHOR_KEY,
+  convertSceneToOpenPencil,
+  serializeOpenPencil,
+  deserializeOpenPencil,
+  editOpenPencilWorkingCopy,
+  type OpenPencilDocument,
+  type OpenPencilNode,
+} from './modules/openpencil/adapter';
+
